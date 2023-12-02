@@ -1,0 +1,16 @@
+Autorzy: Dawid Drożdżyński (151867), Wiktoria Dębowska (151874)
+Temat projektu: Baza danych szpitala
+Nasz szpital będzie podzielony na oddziały, a każdy oddział na sale. Do odpowiednich sal będą przydzieleni pacjenci oraz personel szpitala (lekarze, pielęgniarki, sprzątaczki...). Każdy oddział będzie miał swojego szefa w postaci ordynatora, który jest wybierany spośród lekarzy. Lekarze oraz pielęgniarki mogą posiadać specjalizacje takie jak kardiolog, chirurg czy położna. Co do systemu przydziału sal pacjentom, będą oni w granicach możliwości przydzielani według choroby (tj. jeśli istnieje sala to leżą tam osoby chorujące na to samo). Jest to opcja, która zapewnia bezpieczeństwo naszym pacjentom. 
+
+Pacjenci będą przydzielieni do odziału, sali, będą mieli imiona i nazwiska oraz PESEL. Każdego pacjenta będzie można zdiagnozować i to będzie mógł wpisać tylko lekarz prowadzący, który będzie jeden przypisany do pacjenta. Oprócz tego będzie można zobaczyć takie informacje o pacjencie jak zalecenia lekarskie, które może wpisać dowolny lekarz.
+
+Oprócz tego mamy spis chorób, więc jeśli zaszedłby przełom w medycynie, możemy dodać nową chorobę do bazy danych. Poza tym mamy bazę leków, gdzie lek ma id, nazwę, krótki opis oraz dawkowanie, przez co na obchodzie lekarz może stwierdzić czy wydać nowe zalecenia co do pacjenta (tj. zmiana leków). W bazie będzie także spis z datami wszystkich wizyt w szpitalu pacjentów oraz odzielna do obchodów, gdzie np. lekarz mający zmianę po innym lekarzu będzie mógł zobaczyć co zalecono jego pacjentom na zmianie.
+
+Funkcjonalności:
+	- dodawanie/modyfikacja/usuwanie informacji o pracownikach szpitala a także o chorobach
+	- przypisywanie personelu do sal oraz zmiana sal pacjentom
+	- przyjmowanie pacjentów - utworzenie nowej wizyty, przydział do wolnej sali oraz przypisanie personelu medycznego do podanego pacjenta
+	- wyświetlanie historii wizyt pacjenta w szpitalu po podaniu danych np. PESEL lub nazwisko i imię pacjenta
+	- wpisywanie diagnozy pacjenta
+	- ustalanie zaleceń
+	- przypisywanie pacjentów o tej samej chorobie do tej samej sali
