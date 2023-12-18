@@ -8,73 +8,73 @@
 -- predefined type, no DDL - XMLTYPE
 
 CREATE TABLE choroby (
-    id_choroby NUMBER NOT NULL,
+    id_choroby NUMBER(4) NOT NULL,
     nazwa      VARCHAR2(150 CHAR) NOT NULL,
-    id_spec    INTEGER NOT NULL
+    id_spec    NUMBER(4) NOT NULL
 );
 
 ALTER TABLE choroby ADD CONSTRAINT choroby_pk PRIMARY KEY ( id_choroby );
 
 CREATE TABLE diagnoza (
     pesel         CHAR(11 CHAR) NOT NULL,
-    id_choroby    NUMBER NOT NULL,
-    id_lekarza    INTEGER NOT NULL,
+    id_choroby    NUMBER(4) NOT NULL,
+    id_lekarza    NUMBER(4) NOT NULL,
     data_diagnozy DATE NOT NULL,
-    id_wizyty NUMBER NOT NULL
+    id_wizyty NUMBER(4) NOT NULL
 );
 
 ALTER TABLE diagnoza ADD CONSTRAINT diagnoza_pk PRIMARY KEY ( pesel, id_choroby,id_lekarza );
 
 CREATE TABLE leczenie (
     diagnoza_pacjenci_pesel CHAR(11 CHAR) NOT NULL,
-    leki_id_leku            NUMBER NOT NULL,
-    diagnoza_id_choroby     NUMBER NOT NULL,
-    diagnoza_id_lekarza     INTEGER NOT NULL
+    leki_id_leku            NUMBER(4) NOT NULL,
+    diagnoza_id_choroby     NUMBER(4) NOT NULL,
+    diagnoza_id_lekarza     NUMBER(4) NOT NULL
 );
 
 ALTER TABLE leczenie ADD CONSTRAINT leczenie_pk PRIMARY KEY ( diagnoza_pacjenci_pesel );
 
 CREATE TABLE lekarze (
-    id_medycy INTEGER NOT NULL
+    id_medycy NUMBER(4) NOT NULL
 );
 
 ALTER TABLE lekarze ADD CONSTRAINT lekarze_pk PRIMARY KEY ( id_medycy );
 
 CREATE TABLE leki (
-    id_leku    NUMBER NOT NULL,
+    id_leku    NUMBER(4) NOT NULL,
     nazwa      VARCHAR2(100 CHAR) NOT NULL,
-    dawkowanie NUMBER(5, 2) NOT NULL,
+    dawkowanie NUMBER(4)(5, 2) NOT NULL,
     opis       VARCHAR2(250 CHAR)
 );
 
 ALTER TABLE leki ADD CONSTRAINT leki_pk PRIMARY KEY ( id_leku );
 
 CREATE TABLE medycy_oddzial (
-    id_oddzialu INTEGER NOT NULL,
-    id_medycy   INTEGER NOT NULL
+    id_oddzialu NUMBER(4) NOT NULL,
+    id_medycy   NUMBER(4) NOT NULL
 );
 
 ALTER TABLE medycy_oddzial ADD CONSTRAINT medycy_oddzial_pk PRIMARY KEY ( id_oddzialu, id_medycy );
 
 CREATE TABLE obchod (
-    id_obchodu        INTEGER NOT NULL,
-    id_wizyty         NUMBER NOT NULL,
-    lekarze_id_medycy INTEGER NOT NULL,
+    id_obchodu        NUMBER(4) NOT NULL,
+    id_wizyty         NUMBER(4) NOT NULL,
+    lekarze_id_medycy NUMBER(4) NOT NULL,
     zalecenia         VARCHAR2(250 CHAR)
 );
 
 ALTER TABLE obchod ADD CONSTRAINT obchod_pk PRIMARY KEY ( id_obchodu );
 
 CREATE TABLE oddzialy (
-    id_oddzialu INTEGER NOT NULL,
+    id_oddzialu NUMBER(4) NOT NULL,
     nazwa       VARCHAR2(100 CHAR) NOT NULL
 );
 
 ALTER TABLE oddzialy ADD CONSTRAINT oddzialy_pk PRIMARY KEY ( id_oddzialu );
 
 CREATE TABLE ordynator (
-    id_oddzialu       INTEGER NOT NULL,
-    lekarze_id_medycy INTEGER NOT NULL
+    id_oddzialu       NUMBER(4) NOT NULL,
+    lekarze_id_medycy NUMBER(4) NOT NULL
 );
 
 ALTER TABLE ordynator ADD CONSTRAINT ordynator_pk PRIMARY KEY ( id_oddzialu, lekarze_id_medycy );
@@ -92,13 +92,13 @@ ALTER TABLE pacjenci ADD CONSTRAINT pacjenci_pk PRIMARY KEY ( pesel );
 
 CREATE TABLE sale_pacjenci (
     pacjenci_pesel CHAR(11 CHAR) NOT NULL,
-    sale_nr_sali   INTEGER NOT NULL
+    sale_nr_sali   NUMBER(4) NOT NULL
 );
 
 ALTER TABLE sale_pacjenci ADD CONSTRAINT sale_pacjenci_pk PRIMARY KEY (pacjenci_pesel,sale_nr_sali );
 
 CREATE TABLE personel_medyczny (
-    id_medycy   INTEGER NOT NULL,
+    id_medycy   NUMBER(4) NOT NULL,
     imie        VARCHAR2(100 CHAR) NOT NULL,
     nazwisko    VARCHAR2(100 CHAR) NOT NULL,
     nr_telefonu CHAR(9 CHAR) NOT NULL,
@@ -108,7 +108,7 @@ CREATE TABLE personel_medyczny (
 ALTER TABLE personel_medyczny ADD CONSTRAINT personel_medyczny_pk PRIMARY KEY ( id_medycy );
 
 CREATE TABLE personel_techniczny (
-    id_technicy INTEGER NOT NULL,
+    id_technicy NUMBER(4) NOT NULL,
     imie        VARCHAR2(100 CHAR) NOT NULL,
     nazwisko    VARCHAR2(100 CHAR) NOT NULL,
     nr_telefonu VARCHAR2(100 CHAR) NOT NULL
@@ -117,57 +117,57 @@ CREATE TABLE personel_techniczny (
 ALTER TABLE personel_techniczny ADD CONSTRAINT personel_techniczny_pk PRIMARY KEY ( id_technicy );
 
 CREATE TABLE pielegniarki (
-    id_medycy INTEGER NOT NULL
+    id_medycy NUMBER(4) NOT NULL
 );
 
 ALTER TABLE pielegniarki ADD CONSTRAINT pielegniarki_pk PRIMARY KEY ( id_medycy );
 
 CREATE TABLE sale (
-    nr_sali       INTEGER NOT NULL,
-    id_oddzialu   INTEGER,
-    lozka         INTEGER NOT NULL,
-    wolne_lozka INTEGER NOT NULL
+    nr_sali       NUMBER(4) NOT NULL,
+    id_oddzialu   NUMBER(4),
+    lozka         NUMBER(4) NOT NULL,
+    wolne_lozka NUMBER(4) NOT NULL
 );
 
 ALTER TABLE sale ADD CONSTRAINT sale_pk PRIMARY KEY ( nr_sali );
 
 CREATE TABLE specjalizacja_lekarza (
-    id_lekarza INTEGER NOT NULL,
-    id_spec    INTEGER NOT NULL
+    id_lekarza NUMBER(4) NOT NULL,
+    id_spec    NUMBER(4) NOT NULL
 );
 
 ALTER TABLE specjalizacja_lekarza ADD CONSTRAINT spec_lekarza_pk PRIMARY KEY ( id_lekarza, id_spec );
 
 CREATE TABLE specjalizacje (
-    id_spec   INTEGER NOT NULL,
+    id_spec   NUMBER(4) NOT NULL,
     dziedzina VARCHAR2(100 CHAR) NOT NULL
 );
 
 ALTER TABLE specjalizacje ADD CONSTRAINT specjalizacje_pk PRIMARY KEY ( id_spec );
 
 CREATE TABLE spejalizacja_pielegniarki (
-    id_typu         NUMBER NOT NULL,
-    id_pielegniarki INTEGER NOT NULL
+    id_typu         NUMBER(4) NOT NULL,
+    id_pielegniarki NUMBER(4) NOT NULL
 );
 
 ALTER TABLE spejalizacja_pielegniarki ADD CONSTRAINT spejalizacja_pielegniarki_pk PRIMARY KEY ( id_typu, id_pielegniarki );
 
 CREATE TABLE technicy_oddzial (
-    id_technicy INTEGER NOT NULL,
-    id_oddzialu INTEGER NOT NULL
+    id_technicy NUMBER(4) NOT NULL,
+    id_oddzialu NUMBER(4) NOT NULL
 );
 
 ALTER TABLE technicy_oddzial ADD CONSTRAINT technicy_oddzial_pk PRIMARY KEY ( id_technicy, id_oddzialu );
 
 CREATE TABLE typ_pielegniarki (
-    id_typu NUMBER NOT NULL,
+    id_typu NUMBER(4) NOT NULL,
     nazwa   VARCHAR2(100 CHAR) NOT NULL
 );
 
 ALTER TABLE typ_pielegniarki ADD CONSTRAINT typ_pielegniarki_pk PRIMARY KEY ( id_typu );
 
 CREATE TABLE wizyty (
-    id_wizyty      NUMBER NOT NULL,
+    id_wizyty      NUMBER(4) NOT NULL,
     pacjenci_pesel CHAR(11 CHAR) NOT NULL,
     data_przyjecia  DATE NOT NULL,
     data_wypisu DATE,
@@ -177,8 +177,8 @@ CREATE TABLE wizyty (
 ALTER TABLE wizyty ADD CONSTRAINT wizyty_pk PRIMARY KEY ( id_wizyty );
 
 CREATE TABLE zalecane_leki (
-    id_obchodu INTEGER NOT NULL,
-    id_leku    NUMBER NOT NULL
+    id_obchodu NUMBER(4) NOT NULL,
+    id_leku    NUMBER(4) NOT NULL
 );
 ALTER TABLE zalecane_leki ADD CONSTRAINT zalecane_leki_pk PRIMARY KEY ( id_obchodu);
 
